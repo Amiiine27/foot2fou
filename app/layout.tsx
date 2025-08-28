@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,10 +24,41 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="fr">
+      <body>
+        <header className="min-w-[640px] bg-green-600 text-white shadow-lg py-4 px-6">
+          {" "}
+          {/* (Navbar globale) */}
+          <div className=" max-w-screen mx-auto">
+            {" "}
+            {/* (Container centré) */}
+            <div className="max-w-screen mx-auto relative">
+              {/* Navigation centrée avec flex */}
+              <nav className="flex justify-center items-center space-x-8">
+                <Link href={"/terrains"}>Terrains</Link>
+                <Link href={"/classement"}>Classement</Link>
+                <Link
+                  href="/"
+                  className="text-xl font-bold px-6 whitespace-nowrap"
+                >
+                  <span>⚽</span> Foot 2 Fou
+                </Link>
+                <Link href={"/matches"}>Matchs</Link>
+                <Link href={"/a-propos"}>A propos</Link>
+              </nav>
+
+              {/* Profil en position absolute */}
+              {/* Container profil - visible dès md (tablette) */}
+              <div className="hidden md:absolute md:right-6 md:top-1/2 md:transform md:-translate-y-1/2 md:flex md:items-center md:space-x-3">
+                {/* Texte - visible seulement sur lg+ (desktop) */}
+                <span className="text-sm hidden lg:inline">Bonjour, Amine</span>
+
+                {/* Photo - visible dès md (tablette) */}
+                <div className="w-8 h-8 rounded-full bg-gray-300" />
+              </div>
+            </div>
+          </div>
+        </header>
         {children}
       </body>
     </html>
